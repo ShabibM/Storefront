@@ -1,5 +1,5 @@
 import { User, UserModel } from '../models/users';
-import express, { Application, Request, Response } from 'express';
+import { Application, Request, Response } from 'express';
 import { verifyToken, signToken } from './utils';
 
 // Contains DB SQL methods
@@ -38,13 +38,8 @@ const create = async (req: Request, res: Response) => {
       const { firstname, lastname, password, email } = req.body;
       const user = await Users.create(firstname, lastname, password, email);
       res.send(user);
-    } catch (error) {
-      const e = error as Error;
-      if (e.message.includes('Failed to add the student')) {
-        res.status(500).json(e.message);
-      } else {
-        res.status(401).json(e.message);
-      }
+    } catch (err) {
+        res.status(404).send(err)
     }
   };
 
