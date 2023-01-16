@@ -16,6 +16,7 @@ export type User= {
 
 
 export class UserModel{
+  
 
 
     // GET users
@@ -69,7 +70,7 @@ export class UserModel{
        */
 
       //   POST /users/login (Authentication)
-      async auth(email: string, password: string ): Promise<User | string> {
+      async auth(email: string, password: string ): Promise<User | null> {
         try {
             const db= await client.connect();
             const query= 'select * from users where email== ($1)';
@@ -85,7 +86,7 @@ export class UserModel{
             db.release();
 
             // password does not match
-            return '401';
+            return null;
         } catch (err) {
             console.log("User not found.")
           throw  err;
