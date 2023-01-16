@@ -16,3 +16,5 @@ const client = new Pool({
   password: POSTGRES_PASSWORD,
   database: ENV === 'dev' ? POSTGRES_NAME : TEST_POSTGRES_NAME,
 });
+
+export default client;
