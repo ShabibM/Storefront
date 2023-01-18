@@ -1,30 +1,33 @@
-import express, { Request, Response } from 'express'
+import express,{ Application ,Request, Response } from 'express';
 import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser';
 
 // ------------- Importing Routes -------------
-import userRoutes from "./handlers/users"
+import users_router from "./handlers/users"
 import productRoutes from "./handlers/products"
 import orderRoutes from "./handlers/orders"
 
 
 
-const app: express.Application = express()
+const app: Application = express()
 const address: string = "127.0.0.1:3000"
 const port= 3000;
 
 // ------------- Linking Middlewares -------------
 app.use(bodyParser.json())
 app.use(express.json());
-userRoutes(app);
+app.use(cookieParser())
+
+app.use(users_router);
+// userRoutes(app);
 productRoutes(app);
 orderRoutes(app);
 
 
 
-app.get('/', function (req: Request, res: Response) {
-    res.send('Hello World!')
-})
-
+// app.get('/users', function (req: Request, res: Response) {
+//     res.send('Hello World!')
+// })
 
 
 
@@ -34,3 +37,7 @@ app.get('/', function (req: Request, res: Response) {
 app.listen(port, function () {
     console.log(`starting app on: ${address}`)
 })
+
+
+
+export default app;

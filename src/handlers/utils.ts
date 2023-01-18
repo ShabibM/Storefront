@@ -7,16 +7,21 @@ const {TOKEN_SECRET}= process.env;
 
 
 const signToken= (email: string) =>{
-    const token= sign({user: {email}},TOKEN_SECRET as string)
+    const token= sign({user: email},TOKEN_SECRET as string)
 return token
 }
 
 const verifyToken= (req: Request, email?: string) => {
-    const token = req.headers.authorization!.split(' ')[1]; // getting the token 
+    const token = req.cookies.access_token; // getting the token 
     const decodedToken = verify(token as string, TOKEN_SECRET as string) as JwtPayload; // Getting the payload
+    
+
+    // Verification
+    console.log("XXXX", decodedToken.user)
+    console.log("XXXX", email)
 
     // not same user
-    if(decodedToken.user.email != email){
+    if(email && decodedToken.user != email){
         throw new Error ('not authoraized attempt')
     }
     

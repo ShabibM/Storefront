@@ -39,7 +39,7 @@ export class UserModel{
     async show(id: number): Promise<User> {
         try {
             const db= await client.connect();
-            const query= 'select * from users where id == $1';
+            const query= 'select * from users where id = ($1)';
             const rows= await db.query(query, [id]);
           db.release();
           return rows.rows[0];
@@ -53,7 +53,7 @@ export class UserModel{
       async create(firstname: string, lastname: string, password: string, email: string ): Promise<User> {
         try {
             const db= await client.connect();
-            const query= 'INSERT INTO users (firstname, lastname, password, email) VALUES($1, $2, $3)';
+            const query= 'INSERT INTO users (firstname, lastname, password, email) VALUES($1, $2, $3, $4)';
             
             // Encrypt the entered password using 5 rounds of salting
             const hash_result= bcrypt.hashSync(password+ bcrypt_password, parseInt(salt as string))
@@ -73,15 +73,17 @@ export class UserModel{
       async auth(email: string, password: string ): Promise<User | null> {
         try {
             const db= await client.connect();
-            const query= 'select * from users where email== ($1)';
+            const query= 'select * from users where email= ($1::text)';
             const {rows}= await db.query(query, [email]);
             
             if(rows.length != 0){
                 const saved_password= rows[0].password
 
+                // Decode the entered password to match the stored password (hashed !)
                 if(bcrypt.compareSync(password+bcrypt_password, saved_password)){
                     return rows[0]
                 }
+                
             }
             db.release();
 

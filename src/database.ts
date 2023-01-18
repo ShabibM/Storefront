@@ -5,7 +5,7 @@ import {Pool} from 'pg'
 dotenv.config()
 
 
-const { POSTGRES_HOST, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_NAME, TEST_POSTGRES_NAME, ENV } =
+const { POSTGRES_HOST, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB } =
   process.env; // Destructuring the process.env object
 
 
@@ -14,7 +14,7 @@ const client = new Pool({
   host: POSTGRES_HOST,
   user: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
-  database: ENV === 'dev' ? POSTGRES_NAME : TEST_POSTGRES_NAME,
+  database: POSTGRES_DB,
 });
 
 export default client;
