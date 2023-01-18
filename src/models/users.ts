@@ -85,7 +85,7 @@ export class UserModel{
                 }
                 
             }
-            db.release();
+            await db.release();
 
             // password does not match
             return null;

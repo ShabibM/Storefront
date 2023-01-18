@@ -50,19 +50,21 @@ const auth = async (req, res) => {
     console.log('Xz', email);
     if (password == undefined || email == undefined) {
         res.status(400).send('Missing parameters');
+        return;
     }
     const user = await Users.auth(email, password);
     if (user === null) {
-        res.status(401).send('Wrong password.');
+        res.status(403).send('Wrong password.');
+        return;
     }
     // Correct password THEN create token
-    const token = (0, utils_1.signToken)(email);
-    return res.
-        cookie('access_token', token, {
+    const token = await (0, utils_1.signToken)(email);
+    return res
+        .cookie('access_token', token, {
         httpOnly: true,
     })
         .status(200)
-        .json({ message: "Logged in Successfully" });
+        .send({ message: "Logged in Successfully", token: token });
 };
 //   JWT auth is used within the endpoint not AS a middleware
 users_router.get('/users', showAll);

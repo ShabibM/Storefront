@@ -67,7 +67,7 @@ class UserModel {
                     return rows[0];
                 }
             }
-            db.release();
+            await db.release();
             // password does not match
             return null;
         }

@@ -10,14 +10,21 @@ const signToken = (email) => {
 };
 exports.signToken = signToken;
 const verifyToken = (req, email) => {
-    const token = req.cookies.access_token; // getting the token 
-    const decodedToken = (0, jsonwebtoken_1.verify)(token, TOKEN_SECRET); // Getting the payload
-    // Verification
-    console.log("XXXX", decodedToken.user);
-    console.log("XXXX", email);
-    // not same user
-    if (email && decodedToken.user != email) {
-        throw new Error('not authoraized attempt');
+    try {
+        const token = req.cookies.access_token; // getting the token 
+        console.log('X', req.cookies.access_token);
+        const decodedToken = (0, jsonwebtoken_1.verify)(token, TOKEN_SECRET); // Getting the payload
+        // Verification
+        console.log("XXXX", decodedToken.user);
+        console.log("XXXX", email);
+        // not same user
+        if (email && decodedToken.user != email) {
+            throw new Error('not authoraized attempt');
+        }
+    }
+    catch (error) {
+        console.log('Token: ', error);
+        throw new Error("Undefined token");
     }
 };
 exports.verifyToken = verifyToken;
