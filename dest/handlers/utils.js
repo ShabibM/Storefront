@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyToken = exports.signToken = void 0;
 const jsonwebtoken_1 = require("jsonwebtoken");
 // secret toekn saved in .env file
-const { TOKEN_SECRET } = process.env;
+const { TOKEN_SIGN } = process.env;
 const signToken = (email) => {
-    const token = (0, jsonwebtoken_1.sign)({ user: email }, TOKEN_SECRET);
+    const token = (0, jsonwebtoken_1.sign)({ user: email }, TOKEN_SIGN);
     return token;
 };
 exports.signToken = signToken;
@@ -15,7 +15,7 @@ const verifyToken = (req, email) => {
         let token = req.cookies.access_token || req.headers.authorization.split(' ')[1];
         // Verification
         // console.log("Verify:", token)
-        const decodedToken = (0, jsonwebtoken_1.verify)(token, TOKEN_SECRET); // Getting the payload
+        const decodedToken = (0, jsonwebtoken_1.verify)(token, TOKEN_SIGN); // Getting the payload
         // Verification
         // console.log("XXXX", decodedToken.user)
         // console.log("XXXX", email)
