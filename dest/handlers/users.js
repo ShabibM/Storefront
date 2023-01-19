@@ -22,9 +22,13 @@ const showAll = async (req, res) => {
 };
 const show = async (req, res) => {
     try {
-        const email = req.body.email;
+        // Getting parameters
+        const { email } = req.body;
         const id = Number(req.params.id);
+        console.log("ZZZ", req.body);
+        // Check JWT
         (0, utils_1.verifyToken)(req, email);
+        // Call model
         const users = await Users.show(id); // get signle user
         res.send(users).status(200);
     }
@@ -35,7 +39,7 @@ const show = async (req, res) => {
 };
 const create = async (req, res) => {
     try {
-        // verifyToken(req);
+        (0, utils_1.verifyToken)(req);
         const { firstname, lastname, password, email } = req.body;
         const user = await Users.create(firstname, lastname, password, email);
         res.send(user);

@@ -14,9 +14,9 @@ return token
 const verifyToken= (req: Request, email?: string) => {
 
     try {
-        
-        const token = req.cookies.access_token; // getting the token 
-        console.log('X',req.cookies.access_token)
+         // getting the token from cookies or from headers
+        let token = req.cookies.access_token || req.headers.authorization!.split(' ')[1];
+        console.log("Verify:", token)
         const decodedToken = verify(token as string, TOKEN_SECRET as string) as JwtPayload; // Getting the payload
         
     
@@ -27,9 +27,10 @@ const verifyToken= (req: Request, email?: string) => {
         // not same user
         if(email && decodedToken.user != email){
             throw new Error ('not authoraized attempt')
+            
         }
     } catch (error) {
-        console.log('Token: ',error)
+        // console.log('Token: ',error)
         throw new Error("Undefined token")
     }
    

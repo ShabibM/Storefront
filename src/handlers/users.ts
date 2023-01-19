@@ -13,7 +13,8 @@ const Users= new UserModel();
 
 const showAll= async (req: Request, res: Response) => {
     try {
-        verifyToken(req);
+        verifyToken(req)
+        
         const users: User[]= await Users.index() //all users
         res.send(users).status(200);
     } catch (err) {
@@ -25,10 +26,14 @@ const showAll= async (req: Request, res: Response) => {
 
 const show=async (req: Request, res: Response) => {
     try {
-        const email= req.body.email
+        // Getting parameters
+        const {email}= req.body
         const id= Number(req.params.id)
+
+        // Check JWT
         verifyToken(req, email);
 
+        // Call model
         const users= await Users.show(id) // get signle user
         res.send(users).status(200);
     } catch (err) {
@@ -40,7 +45,7 @@ const show=async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
     try {
-        // verifyToken(req);
+        verifyToken(req);
       const { firstname, lastname, password, email } = req.body;
       const user = await Users.create(firstname, lastname, password, email);
       res.send(user);

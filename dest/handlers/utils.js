@@ -11,8 +11,9 @@ const signToken = (email) => {
 exports.signToken = signToken;
 const verifyToken = (req, email) => {
     try {
-        const token = req.cookies.access_token; // getting the token 
-        console.log('X', req.cookies.access_token);
+        // getting the token from cookies or from headers
+        let token = req.cookies.access_token || req.headers.authorization.split(' ')[1];
+        console.log("Verify:", token);
         const decodedToken = (0, jsonwebtoken_1.verify)(token, TOKEN_SECRET); // Getting the payload
         // Verification
         console.log("XXXX", decodedToken.user);
@@ -23,7 +24,7 @@ const verifyToken = (req, email) => {
         }
     }
     catch (error) {
-        console.log('Token: ', error);
+        // console.log('Token: ',error)
         throw new Error("Undefined token");
     }
 };
