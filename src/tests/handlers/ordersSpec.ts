@@ -1,22 +1,12 @@
 import supertest from 'supertest';
 import app from '../../server';
-import { User } from '../../models/users';
 // import { orders } from '../../models/orders';
 
 
 
 const req = supertest(app);
 
-describe('Testing Users handlers ', () => {
-
-    // to intiate a token
-    const user: User= {
-        id: 2,
-        firstname: 'Shabibz',
-        lastname: 'Dos',
-        password: 'xxx',
-        email: '1234@gmail.com'
-    };
+describe('Testing Orders handlers ', () => {
 
     // To assgin a new token
     let secrect_token: string
@@ -36,7 +26,7 @@ describe('Testing Users handlers ', () => {
     })
 
 
-    it('Endpoint [INDEX] product',async () => {
+    it('Endpoint [INDEX] order',async () => {
         const res= await req
          .get('/orders/2')
          .set('Authorization', `Bearer ${secrect_token}`) 

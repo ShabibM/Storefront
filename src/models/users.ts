@@ -1,7 +1,7 @@
 import client from '../database';
 import bcrypt from 'bcrypt'
 
-const bcrypt_password= process.env.BCRYPT_PASSWORD;
+const bcrypt_password= process.env.BCRYPT;
 const salt= process.env.SALT_ROUNDS
 
 

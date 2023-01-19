@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
 const req = (0, supertest_1.default)(server_1.default);
-describe('Testing Users handlers ', () => {
+describe('Testing Product handlers ', () => {
     // to intiate a token
     const user = {
         id: 2,

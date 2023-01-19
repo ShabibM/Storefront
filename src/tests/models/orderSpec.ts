@@ -15,15 +15,11 @@ describe('Testing Orders Model', () => {
       expect(orderModel.index).toBeDefined();
     });
 
-  
    
     it('Checking index function, showing a particular user orders', async () => {
         const result= await orderModel.index(order.user_id);
         expect(result[0].status).toEqual('shipped');
       });
 
-
-
-    
 
 })

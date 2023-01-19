@@ -7,7 +7,7 @@ import { Product } from '../../models/products';
 
 const req = supertest(app);
 
-describe('Testing Users handlers ', () => {
+describe('Testing Product handlers ', () => {
 
     // to intiate a token
     const user: User= {

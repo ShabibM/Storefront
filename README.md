@@ -5,10 +5,10 @@
 1- start PSQL from the app
 
 2- in terminal type psql [db name]
-  Ex.. psql store
+Ex.. psql store
 
 3- Running the Postgres database through their app
-  DB_name is store
+DB_name is store
 
 # Scripts:
 
@@ -18,7 +18,15 @@
 
 3- npm run dev --> starting typescirpt using nodemon (auto refreshing)
 
+# Environment Varibles:
 
+POSTGRES_HOST=127.0.0.1
+POSTGRES_DB= store
+POSTGRES_USER= (TBA)
+POSTGRES_PASSWORD= (TBA)
+TOKEN_SIGN= (TBA)
+BCRYPT= (TBA)
+SALT_ROUNDS=5
 
 # Storefront Backend Project
 
@@ -77,5 +85,3 @@ Add JWT functionality as shown in the course. Make sure that JWTs are required f
 Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database.
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
-
-

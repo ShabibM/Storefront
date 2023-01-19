@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
 const database_1 = __importDefault(require("../database"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const bcrypt_password = process.env.BCRYPT_PASSWORD;
+const bcrypt_password = process.env.BCRYPT;
 const salt = process.env.SALT_ROUNDS;
 class UserModel {
     // GET users
