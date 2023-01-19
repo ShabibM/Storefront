@@ -3,6 +3,7 @@
 # Connect to the data base:
 
 1- start PSQL from the app
+
 2- in terminal type psql [db name]
   Ex.. psql store
 
@@ -12,6 +13,7 @@
 # Scripts:
 
 1- npm run tsc --> generate the building file
+
 2- npm run test --> Jasmine testing
 
 3- npm run dev --> starting typescirpt using nodemon (auto refreshing)
