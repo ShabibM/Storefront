@@ -21,11 +21,17 @@ DB_name is store
 # Environment Varibles:
 
 POSTGRES_HOST=127.0.0.1
+
 POSTGRES_DB= store
+
 POSTGRES_USER= (TBA)
+
 POSTGRES_PASSWORD= (TBA)
+
 TOKEN_SIGN= (TBA)
+
 BCRYPT= (TBA)
+
 SALT_ROUNDS=5
 
 # Storefront Backend Project
