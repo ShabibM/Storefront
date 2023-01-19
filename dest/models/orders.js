@@ -10,7 +10,7 @@ class OrderModel {
     async index(id) {
         try {
             const db = await database_1.default.connect();
-            const query = 'select * from orders where id= ($1);';
+            const query = 'select * from orders where user_id= ($1);';
             const rows = await db.query(query, [id]);
             // Close connection
             db.release();

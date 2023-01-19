@@ -7,12 +7,19 @@ const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
 const req = (0, supertest_1.default)(server_1.default);
 describe('Testing Users handlers ', () => {
+    // to intiate a token
     const user = {
         id: 2,
         firstname: 'Shabibz',
         lastname: 'Dos',
         password: 'xxx',
         email: '1234@gmail.com'
+    };
+    const product = {
+        id: 2,
+        price: 99,
+        name: 'PS5',
+        category: 'Games-Platform',
     };
     // To assgin a new token
     let secrect_token;
@@ -28,36 +35,28 @@ describe('Testing Users handlers ', () => {
             //  console.log('SpectTest',secrect_token)
         });
     });
-    it('User login [create JWT]', async () => {
+    it('Endpoint [Index] product', async () => {
         const res = await req
-            .post(`/users/login`)
-            .send(user);
+            .get('/products');
         expect(res.status).toBe(200);
     });
-    it('Endpoint [Index] with invalid token', async () => {
+    it('Endpoint [show] product', async () => {
         const res = await req
-            .get('/users')
+            .get('/products/1');
+        expect(res.status).toBe(200);
+    });
+    it('Endpoint [CREATE] product with VALID token', async () => {
+        const res = await req
+            .post('/products')
+            .send(product)
+            .set('Authorization', `Bearer ${secrect_token}`);
+        expect(res.status).toBe(200);
+    });
+    it('Endpoint [CREATE] product with INVALID token', async () => {
+        const res = await req
+            .post('/products')
+            .send(product)
             .set('Authorization', `Bearer JWTtokenNotSecrect`);
-        expect(res.status).toBe(401);
-    });
-    it('Endpoint [Index] with VALID token', async () => {
-        const res = await req
-            .get('/users')
-            .set('Authorization', `Bearer ${secrect_token}`); // setting the token for verification
-        expect(res.status).toBe(200);
-    });
-    it('Endpoint [show] with VALID token', async () => {
-        const res = await req
-            .get('/users/2')
-            .send(user)
-            .set('Authorization', `Bearer ${secrect_token}`);
-        expect(res.status).toBe(200);
-    });
-    it('Endpoint [CREATE] user', async () => {
-        const res = await req
-            .post('/users')
-            .send(user)
-            .set('Authorization', `Bearer ${secrect_token}`);
-        expect(res.status).toBe(200);
+        expect(res.status).toBe(404);
     });
 });

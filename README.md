@@ -1,3 +1,23 @@
+### My notes:
+
+# Connect to the data base:
+
+1- start PSQL from the app
+2- in terminal type psql [db name]
+  Ex.. psql store
+
+3- Running the Postgres database through their app
+  DB_name is store
+
+# Scripts:
+
+1- npm run tsc --> generate the building file
+2- npm run test --> Jasmine testing
+
+3- npm run dev --> starting typescirpt using nodemon (auto refreshing)
+
+
+
 # Storefront Backend Project
 
 ## Getting Started
@@ -56,16 +76,4 @@ Before submitting, make sure that your project is complete with a `README.md`. Y
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
 
-### My notes:
 
-# Connect to the data base:
-
-1- start PSQL from the app
-2- in terminal type psql [db name]
-
-# Scripts:
-
-1- npm run tsc --> generate the building file
-2- npm run test --> Jasmine testing
-
-3- npm run dev --> starting typescirpt using nodemon (auto refreshing)

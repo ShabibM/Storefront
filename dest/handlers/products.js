@@ -31,7 +31,7 @@ const create = async (req, res) => {
         (0, utils_1.verifyToken)(req);
         const { price, name, category } = req.body;
         if (Number.isNaN(price) || name == undefined || category == undefined) {
-            return res.status(400).send('Some parameters are missing.');
+            return res.status(403).send('Some parameters are missing.');
         }
         const product = await Products.create(price, name, category);
         res.send(product);

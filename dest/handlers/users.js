@@ -9,7 +9,7 @@ const utils_1 = require("./utils");
 const users_router = express_1.default.Router();
 // Contains DB SQL methods
 const Users = new users_1.UserModel();
-const showAll = async (req, res) => {
+const index = async (req, res) => {
     try {
         (0, utils_1.verifyToken)(req);
         const users = await Users.index(); //all users
@@ -25,7 +25,6 @@ const show = async (req, res) => {
         // Getting parameters
         const { email } = req.body;
         const id = Number(req.params.id);
-        console.log("ZZZ", req.body);
         // Check JWT
         (0, utils_1.verifyToken)(req, email);
         // Call model
@@ -51,7 +50,6 @@ const create = async (req, res) => {
 };
 const auth = async (req, res) => {
     const { email, password } = req.body;
-    console.log('Xz', email);
     if (password == undefined || email == undefined) {
         res.status(400).send('Missing parameters');
         return;
@@ -71,7 +69,7 @@ const auth = async (req, res) => {
         .send({ message: "Logged in Successfully", token: token });
 };
 //   JWT auth is used within the endpoint not AS a middleware
-users_router.get('/users', showAll);
+users_router.get('/users', index);
 users_router.get('/users/:id', show);
 users_router.post('/users', create);
 users_router.post('/users/login', auth);

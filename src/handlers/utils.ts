@@ -16,13 +16,14 @@ const verifyToken= (req: Request, email?: string) => {
     try {
          // getting the token from cookies or from headers
         let token = req.cookies.access_token || req.headers.authorization!.split(' ')[1];
-        console.log("Verify:", token)
+        // Verification
+        // console.log("Verify:", token)
         const decodedToken = verify(token as string, TOKEN_SECRET as string) as JwtPayload; // Getting the payload
         
     
         // Verification
-        console.log("XXXX", decodedToken.user)
-        console.log("XXXX", email)
+        // console.log("XXXX", decodedToken.user)
+        // console.log("XXXX", email)
     
         // not same user
         if(email && decodedToken.user != email){

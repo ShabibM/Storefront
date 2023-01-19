@@ -43,9 +43,9 @@ class UserModel {
             const query = 'INSERT INTO users (firstname, lastname, password, email) VALUES($1, $2, $3, $4)';
             // Encrypt the entered password using 5 rounds of salting
             const hash_result = bcrypt_1.default.hashSync(password + bcrypt_password, parseInt(salt));
-            const rows = await db.query(query, [firstname, lastname, hash_result, email]);
+            const { rows } = await db.query(query, [firstname, lastname, hash_result, email]);
             db.release();
-            return rows.rows[0];
+            return rows[0];
         }
         catch (err) {
             throw err;

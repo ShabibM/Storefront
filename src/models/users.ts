@@ -57,9 +57,9 @@ export class UserModel{
             
             // Encrypt the entered password using 5 rounds of salting
             const hash_result= bcrypt.hashSync(password+ bcrypt_password, parseInt(salt as string))
-            const rows= await db.query(query, [firstname, lastname, hash_result, email]);
+            const {rows}= await db.query(query, [firstname, lastname, hash_result, email]);
             db.release();
-            return rows.rows[0];
+            return rows[0];
         } catch (err) {
           throw  err;
         }

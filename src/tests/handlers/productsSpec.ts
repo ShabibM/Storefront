@@ -1,18 +1,28 @@
 import supertest from 'supertest';
 import app from '../../server';
 import { User } from '../../models/users';
+import { Product } from '../../models/products';
+
 
 
 const req = supertest(app);
 
 describe('Testing Users handlers ', () => {
 
+    // to intiate a token
     const user: User= {
         id: 2,
         firstname: 'Shabibz',
         lastname: 'Dos',
         password: 'xxx',
         email: '1234@gmail.com'
+    };
+
+    const product: Product= {
+        id: 2,
+        price: 99,
+        name: 'PS5',
+        category: 'Games-Platform',
     };
 
     // To assgin a new token
@@ -33,46 +43,36 @@ describe('Testing Users handlers ', () => {
     })
 
 
-    it('User login [create JWT]', async () => {
-        const res= await req
-          .post(`/users/login`)
-          .send(user)
-        expect(res.status).toBe(200);
-      });
-
-
-    it('Endpoint [Index] with invalid token',async () => {
+    it('Endpoint [Index] product',async () => {
        const res= await req
-        .get('/users')
-        .set('Authorization', `Bearer JWTtokenNotSecrect`)
-        expect(res.status).toBe(401)
+        .get('/products')
+        expect(res.status).toBe(200)
     })
 
 
 
-    it('Endpoint [Index] with VALID token',async () => {
-
+    it('Endpoint [show] product',async () => {
         const res= await req
-         .get('/users')
-         .set('Authorization', `Bearer ${secrect_token}`) // setting the token for verification
+         .get('/products/1')
          expect(res.status).toBe(200)
      })
 
-     it('Endpoint [show] with VALID token',async () => {
 
+     it('Endpoint [CREATE] product with VALID token',async () => {
         const res= await req
-         .get('/users/2')
-         .send(user)
+         .post('/products')
+         .send(product)
          .set('Authorization', `Bearer ${secrect_token}`) 
          expect(res.status).toBe(200)
      })
 
-     it('Endpoint [CREATE] user',async () => {
+
+     it('Endpoint [CREATE] product with INVALID token',async () => {
         const res= await req
-         .post('/users')
-         .send(user)
-         .set('Authorization', `Bearer ${secrect_token}`) 
-         expect(res.status).toBe(200)
+         .post('/products')
+         .send(product)
+         .set('Authorization', `Bearer JWTtokenNotSecrect`) 
+         expect(res.status).toBe(404)
      })
 
 

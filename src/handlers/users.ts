@@ -11,7 +11,7 @@ const Users= new UserModel();
 
 
 
-const showAll= async (req: Request, res: Response) => {
+const index= async (req: Request, res: Response) => {
     try {
         verifyToken(req)
         
@@ -58,7 +58,6 @@ const create = async (req: Request, res: Response) => {
 const auth= async(req: Request, res: Response) => {
 
     const {email, password}= req.body;
-    console.log('Xz',email)
     if(password == undefined || email == undefined){
         res.status(400).send('Missing parameters');
         return
@@ -84,7 +83,7 @@ const auth= async(req: Request, res: Response) => {
 
 
 //   JWT auth is used within the endpoint not AS a middleware
-users_router.get('/users', showAll)
+users_router.get('/users', index)
 users_router.get('/users/:id', show)
 users_router.post('/users', create)
 users_router.post('/users/login', auth)

@@ -33,12 +33,12 @@ export class ProductModel{
 
 
      // GET products:id
-     async show(id: number): Promise<Product[]>{
+     async show(id: number): Promise<Product>{
         try{
             const db= await client.connect();
-            const query= 'select * from products where id== ($1)';
+            const query= 'select * from products where id= ($1);';
             const {rows}= await db.query(query, [id]);
-
+            
             // Close connection
             db.release()
             return rows[0]

@@ -7,12 +7,13 @@ const Orders= new OrderModel();
 
 
 
-const showAll=async (req: Request, res: Response) => {
+const index=async (req: Request, res: Response) => {
     try {
         verifyToken(req);
         const id= Number(req.params.id)
+        
         if(id == undefined){
-            return res.status(400).send('ID is missing.')
+            return res.status(404).send('ID is missing.')
         }
 
         const orders= await Orders.index(id) 
@@ -26,7 +27,7 @@ const showAll=async (req: Request, res: Response) => {
 
 
 const orders_routes= (app: Application) =>{
-    app.get('/orders:id', showAll)
+    app.get('/orders/:id', index)
 
   }
 

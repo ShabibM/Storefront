@@ -5,8 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
+// import { orders } from '../../models/orders';
 const req = (0, supertest_1.default)(server_1.default);
 describe('Testing Users handlers ', () => {
+    // to intiate a token
     const user = {
         id: 2,
         firstname: 'Shabibz',
@@ -28,35 +30,9 @@ describe('Testing Users handlers ', () => {
             //  console.log('SpectTest',secrect_token)
         });
     });
-    it('User login [create JWT]', async () => {
+    it('Endpoint [INDEX] product', async () => {
         const res = await req
-            .post(`/users/login`)
-            .send(user);
-        expect(res.status).toBe(200);
-    });
-    it('Endpoint [Index] with invalid token', async () => {
-        const res = await req
-            .get('/users')
-            .set('Authorization', `Bearer JWTtokenNotSecrect`);
-        expect(res.status).toBe(401);
-    });
-    it('Endpoint [Index] with VALID token', async () => {
-        const res = await req
-            .get('/users')
-            .set('Authorization', `Bearer ${secrect_token}`); // setting the token for verification
-        expect(res.status).toBe(200);
-    });
-    it('Endpoint [show] with VALID token', async () => {
-        const res = await req
-            .get('/users/2')
-            .send(user)
-            .set('Authorization', `Bearer ${secrect_token}`);
-        expect(res.status).toBe(200);
-    });
-    it('Endpoint [CREATE] user', async () => {
-        const res = await req
-            .post('/users')
-            .send(user)
+            .get('/orders/2')
             .set('Authorization', `Bearer ${secrect_token}`);
         expect(res.status).toBe(200);
     });
