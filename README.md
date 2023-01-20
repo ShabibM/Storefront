@@ -24,6 +24,8 @@ POSTGRES_HOST=127.0.0.1
 
 POSTGRES_DB= store
 
+POSTGRES_TEST_DB= storetest
+
 POSTGRES_USER= (TBA)
 
 POSTGRES_PASSWORD= (TBA)
@@ -33,6 +35,11 @@ TOKEN_SIGN= (TBA)
 BCRYPT= (TBA)
 
 SALT_ROUNDS=5
+
+ENV= (DEV or TEST)
+
+
+
 
 # Storefront Backend Project
 

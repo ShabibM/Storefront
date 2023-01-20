@@ -71,7 +71,6 @@ describe('Testing Users handlers ', () => {
         const res= await req
          .post('/users')
          .send(user)
-         .set('Authorization', `Bearer ${secrect_token}`) 
          expect(res.status).toBe(200)
      })
 

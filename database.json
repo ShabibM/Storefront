@@ -5,5 +5,12 @@
     "database": "store",
     "user": "admin",
     "password": "123"
+  },
+  "test": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "storetest",
+    "user": "admin",
+    "password": "123"
   }
 }

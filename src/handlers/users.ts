@@ -45,7 +45,6 @@ const show=async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
     try {
-        verifyToken(req);
       const { firstname, lastname, password, email } = req.body;
       const user = await Users.create(firstname, lastname, password, email);
       res.send(user);

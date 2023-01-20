@@ -56,8 +56,7 @@ describe('Testing Users handlers ', () => {
     it('Endpoint [CREATE] user', async () => {
         const res = await req
             .post('/users')
-            .send(user)
-            .set('Authorization', `Bearer ${secrect_token}`);
+            .send(user);
         expect(res.status).toBe(200);
     });
 });
