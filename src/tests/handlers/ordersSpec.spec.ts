@@ -12,6 +12,8 @@ describe('Testing Orders handlers ', () => {
     let secrect_token: string
 
     beforeAll(async () => {
+        process.env.ENV= 'TEST'
+
         await req
             .post('/users/login')
             .send({

@@ -13,6 +13,11 @@ const userModel= new UserModel();
 
 describe('Testing Users Model', () => {
 
+    beforeAll(async () => {
+      process.env.ENV= 'TEST'
+
+    })
+
     it('Checking create function', () => {
       expect(userModel.create).toBeDefined();
     });

@@ -12,6 +12,12 @@ const productModel= new ProductModel();
 
 describe('Testing Products Model', () => {
 
+
+  beforeAll(async () => {
+    process.env.ENV= 'TEST'
+
+})
+
     it('Checking create function', () => {
       expect(productModel.create).toBeDefined();
     });

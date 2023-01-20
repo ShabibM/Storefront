@@ -11,6 +11,12 @@ const orderModel= new OrderModel();
 
 describe('Testing Orders Model', () => {
 
+  beforeAll(async () => {
+    process.env.ENV= 'TEST'
+
+})
+  
+
     it('Checking index function', () => {
       expect(orderModel.index).toBeDefined();
     });

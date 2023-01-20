@@ -8,7 +8,12 @@
 Ex.. psql store
 
 3- Running the Postgres database through their app
-DB_name is store
+
+Running on port 5432
+
+Dev DB name is store
+Dev DB name is storetest
+
 
 # Scripts:
 

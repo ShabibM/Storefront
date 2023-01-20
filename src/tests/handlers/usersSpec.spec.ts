@@ -5,6 +5,8 @@ import { User } from '../../models/users';
 
 const req = supertest(app);
 
+
+
 describe('Testing Users handlers ', () => {
 
     const user: User= {
@@ -19,6 +21,9 @@ describe('Testing Users handlers ', () => {
     let secrect_token: string
 
     beforeAll(async () => {
+        process.env.ENV= 'TEST'
+
+
         await req
             .post('/users/login')
             .send({
