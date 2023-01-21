@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node dest/server.js",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dest --onSuccess \"node ./dest/server.js\"",
-    "test": "jasmine-ts",
+    "test": "npm run tsc && jasmine-ts && db-migrate reset -e test",
     "tsc": "tsc",
     "dev": "ts-node-dev src/server.ts",
     "up": "db-migrate up"

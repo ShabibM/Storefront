@@ -9,7 +9,7 @@ const orderModel= new OrderModel();
         status: "transit"
     };
 
-describe('Testing Orders Model', () => {
+describe('Testing Orders Model: ', () => {
 
   beforeAll(async () => {
     process.env.ENV= 'TEST'
@@ -24,7 +24,7 @@ describe('Testing Orders Model', () => {
    
     it('Checking index function, showing a particular user orders', async () => {
         const result= await orderModel.index(order.user_id);
-        expect(result[0].status).toEqual('shipped');
+        expect(result[0].status).toEqual(order.status);
       });
 
 

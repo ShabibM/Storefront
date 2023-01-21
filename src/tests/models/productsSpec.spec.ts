@@ -6,7 +6,7 @@ const productModel= new ProductModel();
         const product: Product= {
         id: 1,
         price: 100,
-        name: 'Xbox',
+        name: 'Coffee Blend',
         category: 'Games-Platform',
     };
 
@@ -28,7 +28,7 @@ describe('Testing Products Model', () => {
    
     it('Checking show function, showing a product', async () => {
         const result_product= await productModel.show(product.id);
-        expect(result_product.name).toEqual('Xbox');
+        expect(result_product.name).toEqual(product.name);
       });
 
 
